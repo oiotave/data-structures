@@ -7,17 +7,13 @@ List* new_list() {
 }
 
 int is_empty(List* nlist) {
-    if(!nlist)
-        return 1;
-    else
-        return 0;
+    if(!nlist) return 1;
+    else return 0;
 }
 
 int is_unitary(List* nlist) {
-    if(nlist->next == NULL)
-        return 1;
-    else
-        return 0;
+    if(nlist->next == NULL) return 1;
+    else return 0;
 }
 
 int length(List* nlist) {
@@ -27,7 +23,6 @@ int length(List* nlist) {
         len = len + 1;
         nlist = nlist->next;
     }
-
     return len;
 }
 
@@ -44,18 +39,17 @@ void show_list(List* nlist) {
     printf("\n");
 }
 
-// 'opt' armazena o tipo de inserção: Início (1) | Final (2) | Meio (3)
+// 'opt' armazena o tipo de inserï¿½ï¿½o: Inï¿½cio (1) | Final (2) | Meio (3)
 void insert(List **plist, int num, char opt) {
-    int opt2; // Caso seja inserção intermediária, guarda a posição de inserção desejada
+    int opt2; // Caso seja inserï¿½ï¿½o intermediï¿½ria, guarda a posiï¿½ï¿½o de inserï¿½ï¿½o desejada
     List* aux;
 
-    // Alocação de memória para novo elemento da lista
+    // Alocaï¿½ï¿½o de memï¿½ria para novo elemento da lista
     aux = (List*) malloc(sizeof(List));
     if(!aux) {
         printf("\nErro na alocacao\n");
         return;
     }
-
     aux->info = num;
 
     if(opt == 3) {
@@ -67,8 +61,7 @@ void insert(List **plist, int num, char opt) {
             return;
         }
     }
-
-    // Redireciona para a inserção adequada
+    // Redireciona para a inserï¿½ï¿½o adequada
     switch(opt) {
         case 1:
             insert_start(plist, aux);
@@ -83,7 +76,7 @@ void insert(List **plist, int num, char opt) {
             break;
 
         default:
-            printf("\nOpção indisponivel\n");
+            printf("\nOpcao indisponivel\n");
             break;
     }
 }
@@ -96,46 +89,41 @@ void insert_start(List** plist, List* aux) {
 void insert_end(List **plist, List *aux) {
     aux->next = NULL;
 
-    if(is_empty(*plist))
-        *plist = aux;
+    if(is_empty(*plist)) *plist = aux;
 
-    else if(is_unitary(*plist))
-        (*plist)->next = aux;
+    else if(is_unitary(*plist)) (*plist)->next = aux;
 
     else {
         List *temp;
         for(temp = *plist; temp->next; temp = temp->next);
-
         temp->next = aux;
     }
 }
 
 void insert_gnr(List **plist, List *aux, int pst) {
-    int pst_ctr = 1; // Guarda número de posições percorridas na lista até o momento
+    int pst_ctr = 1; // Guarda nï¿½mero de posiï¿½ï¿½es percorridas na lista atï¿½ o momento
 
-    if(is_unitary(*plist))
-        insert_start(plist, aux);
+    if(is_unitary(*plist)) insert_start(plist, aux);
 
     else {
         List *temp = *plist;
 
-        // Percorre todos os elementos até a posição de inserção desejada
+        // Percorre todos os elementos atï¿½ a posiï¿½ï¿½o de inserï¿½ï¿½o desejada
         while(1) {
-            if(pst_ctr == pst - 1) // Para na posição imediatamente anterior à desejada
+            if(pst_ctr == pst - 1) // Para na posiï¿½ï¿½o imediatamente anterior ï¿½ desejada
                 break;
 
             pst_ctr = pst_ctr + 1;
             temp = temp->next;
         }
-
         aux->next = temp->next;
         temp->next = aux;
     }
 }
 
 void remover(List **plist) {
-    int opt, // Guarda a posição do elemento que será removido
-        opt_ctr = 1; // Conta o número de elementos percorridos até o momento
+    int opt, // Guarda a posiï¿½ï¿½o do elemento que serï¿½ removido
+        opt_ctr = 1; // Conta o nï¿½mero de elementos percorridos atï¿½ o momento
 
     List *aux;
 
@@ -168,16 +156,14 @@ void remover(List **plist) {
 
             return;
         }
-
-        // Percorre todos os elementos até a posição de remoção
+        // Percorre todos os elementos atï¿½ a posiï¿½ï¿½o de remoï¿½ï¿½o
         while(1) {
-            if(opt_ctr == opt - 1) // Para na posição imediante anterior à de remoção
+            if(opt_ctr == opt - 1) // Para na posiï¿½ï¿½o imediante anterior ï¿½ de remoï¿½ï¿½o
                 break;
 
             opt_ctr = opt_ctr + 1;
             temp = temp->next;
         }
-
         aux = temp->next;
         temp->next = temp->next->next;
         free(aux);
@@ -186,25 +172,21 @@ void remover(List **plist) {
 
 void clean(List **plist) {
     List *aux, // Guarda o elemento seguinte para ser removido
-         *aux2; // Guarda o elemento atual à ser removido
+         *aux2; // Guarda o elemento atual ï¿½ ser removido
 
-    if(is_empty(*plist))
-        printf("\nEmpty list\n");
+    if(is_empty(*plist)) printf("\nEmpty list\n");
 
     else if(is_unitary(*plist)) {
         aux = *plist;
-
         *plist = NULL;
         free(aux);
     }
-
     else {
         aux = *plist;
 
         while(aux) {
             aux2 = aux;
             aux = aux->next;
-
             free(aux2);
         }
         *plist = NULL;

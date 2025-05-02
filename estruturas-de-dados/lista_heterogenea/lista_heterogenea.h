@@ -1,10 +1,10 @@
 #ifndef LISTA_HETEROGENEA_H_INCLUDED
 #define LISTA_HETEROGENEA_H_INCLUDED
 
-// Definição da estrutura da lista
+// Definiï¿½ï¿½o da estrutura da lista
 struct tNode {
     char type; // Armazena o tipo do elemento
-    void *info; // Configurado para suportar tipo numéricos simples (int & float)
+    void *info; // Configurado para suportar tipo numï¿½ricos simples (int & float)
     struct tNode *next;
 };
 
@@ -13,10 +13,10 @@ typedef struct tNode Node;
 // Construtor da lista
 Node* new_list();
 
-// Checa se a lista está vazia
+// Checa se a lista estï¿½ vazia
 int is_empty(Node*);
 
-// Checa se lista é unitária
+// Checa se lista ï¿½ unitï¿½ria
 int is_unitary(Node*);
 
 // Mostra todos os elementos da lista
@@ -25,7 +25,7 @@ void show_list(Node*);
 // Adiciona novo elemento int ou float
 void insert(Node**);
 
-// Remove o último elemento
+// Remove o ï¿½ltimo elemento
 void remover(Node**);
 
 // Limpa a lista

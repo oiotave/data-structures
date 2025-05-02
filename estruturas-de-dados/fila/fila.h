@@ -1,7 +1,7 @@
 #ifndef FILA_H_INCLUDED
 #define FILA_H_INCLUDED
 
-// Definição do tipo fila
+// Definiï¿½ï¿½o do tipo fila
 struct tQueue {
     int info;
     struct tQueue *next;
@@ -12,10 +12,10 @@ typedef struct tQueue Queue;
 // Construtor da fila
 Queue* new_queue();
 
-// Checa se a fila está vazia
+// Checa se a fila estï¿½ vazia
 int is_empty(Queue*);
 
-// Checa se a fila é unitária
+// Checa se a fila ï¿½ unitï¿½ria
 int is_unitary(Queue*);
 
 // Mostra o primeiro elemento da fila

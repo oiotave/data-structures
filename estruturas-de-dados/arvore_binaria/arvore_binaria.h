@@ -10,33 +10,32 @@ struct tTree {
 
 typedef struct tTree Tree;
 
-// Construtor de árvore
+// Construtor de ï¿½rvore
 Tree* new_tree();
 
-// Insere novo nó de forma ordenada (chave de ordenação: valor do inteiro)
+// Insere novo nï¿½ de forma ordenada (chave de ordenaï¿½ï¿½o: valor do inteiro)
 Tree* insert_node(Tree*, int);
 
-// Limpa àrvore
+// Limpa ï¿½rvore
 Tree* clean(Tree*);
 
-// Mostra todos os elementos da árvore
+// Mostra todos os elementos da ï¿½rvore
 void show_tree(Tree*, int);
 
-// Conta o número total de nós da árvore
+// Conta o nï¿½mero total de nï¿½s da ï¿½rvore
 int nodes_number(Tree*);
 
-// Calcula a profundidade da árvore
+// Calcula a profundidade da ï¿½rvore
 int height(Tree*);
 
-// Balanceia a árvore (árvore binária AVL)
+// Balanceia a ï¿½rvore (ï¿½rvore binï¿½ria AVL)
 Tree* balance(Tree*);
 
-Tree* left_rotation(Tree*); // Rotação à direita
+Tree* left_rotation(Tree*); // Rotaï¿½ï¿½o ï¿½ direita
 
-Tree* right_rotation(Tree*); // Rotação à esquerda
+Tree* right_rotation(Tree*); // Rotaï¿½ï¿½o ï¿½ esquerda
 
-// Calcula o fato de balanceamento do nó
+// Calcula o fato de balanceamento do nï¿½
 int factor(Tree*);
-
 
 #endif // ARVORE_BINARIA_H_INCLUDED

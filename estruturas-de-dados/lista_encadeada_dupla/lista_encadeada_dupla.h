@@ -1,14 +1,14 @@
 #ifndef LISTA_ENCADEADA_DUPLA_H_INCLUDED
 #define LISTA_ENCADEADA_DUPLA_H_INCLUDED
 
-// Definição do tipo lista duplamente encadeada
+// Definiï¿½ï¿½o do tipo lista duplamente encadeada
 struct tList {
     struct tList *prev;
     int info;
     struct tList *next;
 };
 
-// Definição do ponteiro para as extremidades da lista
+// Definiï¿½ï¿½o do ponteiro para as extremidades da lista
 struct pointer {
     struct tList *str;
     struct tList *end;
@@ -20,26 +20,26 @@ typedef struct pointer pList;
 // Construtor da lista
 void new_list(pList*);
 
-// Checa se a lista está vazia
+// Checa se a lista estï¿½ vazia
 int is_empty(pList);
 
-// Checa se a lista é unitária
+// Checa se a lista ï¿½ unitï¿½ria
 int is_unitary(pList);
 
-// Retorna o número de elementos da lista
+// Retorna o nï¿½mero de elementos da lista
 int length(pList);
 
 // Mostra todos os elementos da lista
 void show_list(pList);
 
-// Gerencia os diferentes tipos de inserção
+// Gerencia os diferentes tipos de inserï¿½ï¿½o
 void insert(pList*, int, int);
 
-void insert_str(pList*, List*); // Inserção no começo
+void insert_str(pList*, List*); // Inserï¿½ï¿½o no comeï¿½o
 
-void insert_end(pList*, List*); // Inserção no final
+void insert_end(pList*, List*); // Inserï¿½ï¿½o no final
 
-void insert_gnr(pList*, List*, int); // Inserção em qualquer posição intermediária
+void insert_gnr(pList*, List*, int); // Inserï¿½ï¿½o em qualquer posiï¿½ï¿½o intermediï¿½ria
 
 // Remove um elemento da lista
 void remover(pList*);

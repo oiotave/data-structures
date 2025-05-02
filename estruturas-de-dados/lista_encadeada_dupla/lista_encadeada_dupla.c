@@ -8,35 +8,28 @@ void new_list(pList *plist) {
 }
 
 int is_empty(pList l) {
-    if(l.str == NULL && l.end == NULL)
-        return 1;
-    else
-        return 0;
+    if(l.str == NULL && l.end == NULL) return 1;
+    else return 0;
 }
 
 int is_unitary(pList l) {
-    if(l.str != NULL && l.str == l.end)
-        return 1;
-    else
-        return 0;
+    if(l.str != NULL && l.str == l.end) return 1;
+    else return 0;
 }
 
 int length(pList l) {
-    int num = 0; // Guarda o número de elementos
+    int num = 0; // Guarda o nï¿½mero de elementos
     List *aux;
 
-    if(is_empty(l))
-        return 0;
+    if(is_empty(l)) return 0;
 
-    if(is_unitary(l))
-        return 1;
+    if(is_unitary(l)) return 1;
 
     // Percorre toda a lista
     for(aux = l.str; aux != l.end; aux = aux->next)
         num = num + 1;
 
     num = num + 1;
-
     return num;
 }
 
@@ -60,18 +53,17 @@ void show_list(pList l) {
     printf(" %d", aux->info);
 }
 
-// 'opt' armazena o tipo de inserção: Início (1) | Final (2) | Meio (3)
+// 'opt' armazena o tipo de inserï¿½ï¿½o: Inï¿½cio (1) | Final (2) | Meio (3)
 void insert(pList *plist, int num, int opt) {
-    int opt2; // Caso seja inserção intermediária, guarda a posição de inserção desejada
+    int opt2; // Caso seja inserï¿½ï¿½o intermediï¿½ria, guarda a posiï¿½ï¿½o de inserï¿½ï¿½o desejada
     List *aux;
 
-    // Alocação de memória para novo elemento
+    // Alocaï¿½ï¿½o de memï¿½ria para novo elemento
     aux = (List*) malloc(sizeof(List));
     if(!aux) {
         printf("\nErro de alocacao\n");
         return;
     }
-
     aux->info = num;
 
     if(opt == 3) {
@@ -83,7 +75,6 @@ void insert(pList *plist, int num, int opt) {
             return;
         }
     }
-
     switch(opt) {
         case 1:
             insert_str(plist, aux);
@@ -108,15 +99,12 @@ void insert_str(pList *plist, List *aux) {
 
     if(is_empty(*plist)) {
         aux->next = NULL;
-
         plist->str = aux;
         plist->end = aux;
     }
-
     else {
         aux->next = plist->str;
         aux->next->prev = aux;
-
         plist->str = aux;
     }
 }
@@ -126,36 +114,31 @@ void insert_end(pList *plist, List *aux) {
 
     if(is_empty(*plist)) {
         aux->prev = NULL;
-
         plist->end = aux;
         plist->str = aux;
     }
-
     else {
         aux->prev = plist->end;
         aux->prev->next = aux;
 
         plist->end = aux;
     }
-
 }
 
 void insert_gnr(pList *plist, List *aux, int pst) {
     List* temp = plist->str;
     int pst_ctr = 1; // Guarda a quantidade de elementos percorridos
 
-    if(is_unitary(*plist))
-        insert_str(plist, aux);
+    if(is_unitary(*plist)) insert_str(plist, aux);
 
     else {
         while(1) {
-            if(pst_ctr == pst) // Para exatamente na posicao de inserção
+            if(pst_ctr == pst) // Para exatamente na posicao de inserï¿½ï¿½o
                 break;
 
             temp = temp->next;
             pst_ctr = pst_ctr + 1;
         }
-
         aux->prev = temp->prev;
         aux->next = temp;
 
@@ -166,23 +149,20 @@ void insert_gnr(pList *plist, List *aux, int pst) {
 
 void remover(pList *plist) {
     List *aux, // Aponta para o bloco removido
-         *temp; // Ponteiro temporário usado para percorrer a lsita
+         *temp; // Ponteiro temporï¿½rio usado para percorrer a lsita
 
-    int opt, // Armazena a posição de remoção
+    int opt, // Armazena a posiï¿½ï¿½o de remoï¿½ï¿½o
         opt_ctr = 1; // Guarda a quantidade de elementos percorridos
 
-    if(is_empty(*plist))
-        printf("\nLista vazia\n");
+    if(is_empty(*plist)) printf("\nLista vazia\n");
 
     else if(is_unitary(*plist)) {
         aux = plist->str;
 
         plist->str = NULL;
         plist->end = NULL;
-
         free(aux);
     }
-
     else {
         printf("\nDigite a posicao de remocao: ");
         scanf("%d", &opt);
@@ -191,8 +171,7 @@ void remover(pList *plist) {
             printf("\nPosicao indisponivel\n");
             return;
         }
-
-        // Caso especial para remoção do primeiro elemento
+        // Caso especial para remoï¿½ï¿½o do primeiro elemento
         if(opt == 1) {
             aux = plist->str;
 
@@ -202,8 +181,7 @@ void remover(pList *plist) {
             free(aux);
             return;
         }
-
-        // Caso especial para remoção do último elemento
+        // Caso especial para remoï¿½ï¿½o do ï¿½ltimo elemento
         if(opt == length(*plist)) {
             aux = plist->end;
 
@@ -226,7 +204,6 @@ void remover(pList *plist) {
 
         temp->prev->next = temp->next;
         temp->next->prev = temp->prev;
-
         free(temp);
     }
 }

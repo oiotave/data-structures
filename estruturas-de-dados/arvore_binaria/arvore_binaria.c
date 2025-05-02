@@ -9,63 +9,56 @@ Tree* new_tree() {
 Tree* insert_node(Tree *ptree, int num) {
     Tree* aux;
 
-    // Verifica se o nó atual é folha
+    // Verifica se o nï¿½ atual ï¿½ folha
     if(!ptree) {
-        // Alocação de novo nó folha
+        // Alocaï¿½ï¿½o de novo nï¿½ folha
         aux = (Tree*) malloc(sizeof(Tree*));
 
         if(!aux) {
             printf("\nErro de alocacao\n");
             return 0;
         }
-
         aux->info = num;
         aux->left = 0;
         aux->right = 0;
 
         return aux;
     }
-
-    // Se não for, busca nos nós filhos de acordo com a chave de ordenação
+    // Se nï¿½o for, busca nos nï¿½s filhos de acordo com a chave de ordenaï¿½ï¿½o
     else {
         if(num <= ptree->info) {
-            // Busca no filho à esquerda se o novo valor for menor que o nó atual
+            // Busca no filho ï¿½ esquerda se o novo valor for menor que o nï¿½ atual
             ptree->left = insert_node(ptree->left, num);
 
-            if(factor(ptree) > 1 || factor(ptree) < -1) // Balanceia a árvore após inserção
-                ptree = balance(ptree);
+            // Balanceia a ï¿½rvore apï¿½s inserï¿½ï¿½o
+            if(factor(ptree) > 1 || factor(ptree) < -1) ptree = balance(ptree);
         }
-
         else {
-            // Busca no filho à direita se o novo valor for maior que o nó atual
+            // Busca no filho ï¿½ direita se o novo valor for maior que o nï¿½ atual
             ptree->right = insert_node(ptree->right, num);
 
-            if(factor(ptree) > 1 || factor(ptree) < -1) // Balanceia a árvore após inserção
-                ptree = balance(ptree);
+            // Balanceia a ï¿½rvore apï¿½s inserï¿½ï¿½o
+            if(factor(ptree) > 1 || factor(ptree) < -1) ptree = balance(ptree);
         }
-
-        return ptree; // Retorna a árvore com o novo elemento
+        return ptree; // Retorna a ï¿½rvore com o novo elemento
     }
 }
 
 Tree* clean(Tree *ptree) {
-    if(!ptree)
-        return 0;
+    if(!ptree) return 0;
 
     else {
         ptree->left = clean(ptree->left);
         ptree->right = clean(ptree->right);
 
         free(ptree);
-
         return 0;
     }
 }
 
-// 'opt' representa o modelo de exibição ('1' - Prefixada | '2' - Infixada | '3' - Posfixa)
+// 'opt' representa o modelo de exibiï¿½ï¿½o ('1' - Prefixada | '2' - Infixada | '3' - Posfixa)
 void show_tree(Tree *ptree, int opt) {
-    if(!ptree)
-        return;
+    if(!ptree) return;
 
     switch(opt) {
         // Prefixada
@@ -89,42 +82,35 @@ void show_tree(Tree *ptree, int opt) {
             printf("%d ", ptree->info);
             break;
 
-        default:
-            break;
+        default: break;
     }
 }
 
 int nodes_number(Tree *ptree) {
-    int sum = 0, // Guarda o número de nós à esquerda da raiz
-        sum2 = 0; // Guarda o número de nós à direita da raiz
+    int sum = 0,  // Guarda o nï¿½mero de nï¿½s ï¿½ esquerda da raiz
+        sum2 = 0; // Guarda o nï¿½mero de nï¿½s ï¿½ direita da raiz
 
-    if(!ptree)
-        return 0;
+    if(!ptree) return 0;
 
     else {
         sum = 1 + nodes_number(ptree->left);
         sum2 = 1 + nodes_number(ptree->right);
-
         return sum + sum2 - 1;
     }
 }
 
 int height(Tree *ptree) {
-    int a, // Altura à esquerda da raiz
-        b; // Altura à direita da raiz
+    int a, // Altura ï¿½ esquerda da raiz
+        b; // Altura ï¿½ direita da raiz
 
-    if(!ptree)
-        return 0;
+    if(!ptree) return 0;
 
     else {
         a = height(ptree->left);
         b = height(ptree->right);
 
-        if(a >= b)
-            return a + 1;
-
-        else
-            return b + 1;
+        if(a >= b) return a + 1;
+        else       return b + 1;
     }
 }
 
@@ -132,7 +118,6 @@ int factor(Tree *ptree) {
     int fact;
 
     fact = height(ptree->left) - height(ptree->right);
-
     return fact;
 }
 
@@ -141,23 +126,19 @@ Tree* balance(Tree *ptree) {
 
     // Lado esquerdo desbalanceado
     if(factor(ptree) == 2) {
-        if(factor(ptree->left) < 0) // Caso de rotação dupla
-            ptree->left = right_rotation(ptree->left);
+        // Caso de rotaï¿½ï¿½o dupla
+        if(factor(ptree->left) < 0) ptree->left = right_rotation(ptree->left);
 
         ptree = left_rotation(ptree);
-
         return ptree;
     }
-
     // Lado direito desbalanceado
     else if(factor(ptree) == -2) {
-        if(factor(ptree->right) > 0) // Caso de rotação dupla
-            ptree->right = left_rotation(ptree->right);
+        // Caso de rotaï¿½ï¿½o dupla
+        if(factor(ptree->right) > 0) ptree->right = left_rotation(ptree->right);
 
         ptree = right_rotation(ptree);
-
         return ptree;
-
     }
 }
 

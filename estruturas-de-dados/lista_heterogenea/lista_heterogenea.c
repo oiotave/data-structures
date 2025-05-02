@@ -7,17 +7,13 @@ Node* new_list() {
 }
 
 int is_empty(Node *mlist) {
-    if(!mlist)
-        return 1;
-    else
-        return 0;
+    if(!mlist) return 1;
+    else return 0;
 }
 
 int is_unitary(Node *mlist) {
-    if(!mlist->next)
-        return 1;
-    else
-        return 0;
+    if(!mlist->next) return 1;
+    else return 0;
 }
 
 void show_list(Node *mlist) {
@@ -26,8 +22,7 @@ void show_list(Node *mlist) {
 
     Node *aux;
 
-    if(is_empty(mlist))
-        printf("\nLista vazia\n");
+    if(is_empty(mlist)) printf("\nLista vazia\n");
 
     else {
         printf("\nLista: ");
@@ -38,7 +33,6 @@ void show_list(Node *mlist) {
                 num = aux->info;
                 printf("%d ", *num);
             }
-
             // Mostra quando for float
             else {
                 num2 = aux->info;
@@ -69,7 +63,6 @@ void insert(Node **plist) {
 
             aux->info = num;
             aux->type = 'i';
-
             break;
 
         case 2:
@@ -79,7 +72,6 @@ void insert(Node **plist) {
 
             aux->info = num2;
             aux->type = 'f';
-
             break;
 
         default:
@@ -87,11 +79,9 @@ void insert(Node **plist) {
             break;
     }
 
-    if(is_empty(*plist))
-        *plist = aux;
+    if(is_empty(*plist)) *plist = aux;
 
-    else if(is_unitary(*plist))
-        (*plist)->next = aux;
+    else if(is_unitary(*plist)) (*plist)->next = aux;
 
     else {
         Node *temp;
@@ -117,13 +107,11 @@ void remover(Node **plist) {
         free(aux);
         return;
     }
-
     // Remove sempre ao final da lista
     for(temp = *plist; temp->next->next; temp = temp->next);
 
     aux = temp->next;
     temp->next = NULL;
-
     free(aux);
 }
 

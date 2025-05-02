@@ -7,17 +7,13 @@ Queue* new_queue() {
 }
 
 int is_empty(Queue* nqueue) {
-    if(!nqueue)
-        return 1;
-    else
-        return 0;
+    if(!nqueue) return 1;
+    else return 0;
 }
 
 int is_unitary(Queue* nqueue) {
-    if(nqueue->next == NULL)
-        return 1;
-    else
-        return 0;
+    if(nqueue->next == NULL) return 1;
+    else return 0;
 }
 
 void show_queue(Queue* nqueue) {
@@ -25,14 +21,13 @@ void show_queue(Queue* nqueue) {
         printf("\nFila vazia\n");
         return;
     }
-
     printf("\nPrimeiro elemento da fila: %d", nqueue->info);
 }
 
 void insert(Queue **pqueue, int num) {
     Queue *aux, *aux2;
 
-    // Alocação de novo elemento
+    // Alocaï¿½ï¿½o de novo elemento
     aux = (Queue*) malloc(sizeof(Queue));
 
     if(!aux) {
@@ -42,13 +37,11 @@ void insert(Queue **pqueue, int num) {
     aux->next = NULL;
     aux->info = num;
 
-    if(is_empty(*pqueue))
-        *pqueue = aux;
+    if(is_empty(*pqueue)) *pqueue = aux;
 
-    else if(is_unitary(*pqueue))
-        (*pqueue)->next = aux;
+    else if(is_unitary(*pqueue)) (*pqueue)->next = aux;
 
-    // Inserção sempre no final
+    // Inserï¿½ï¿½o sempre no final
     else {
         for(aux2 = *pqueue; aux2->next; aux2 = aux2->next);
         aux2->next = aux;
@@ -59,8 +52,7 @@ int remover(Queue **pqueue) {
     Queue *aux;
     int num;
 
-    if(is_empty(*pqueue))
-        printf("\nFila vazia\n");
+    if(is_empty(*pqueue)) printf("\nFila vazia\n");
 
     else if(is_unitary(*pqueue)) {
         num = (*pqueue)->info;
@@ -68,18 +60,15 @@ int remover(Queue **pqueue) {
 
         *pqueue = NULL;
         free(aux);
-
         return num;
     }
-
-    // Remoção sempre no início
+    // Remoï¿½ï¿½o sempre no inï¿½cio
     else {
         num = (*pqueue)->info;
         aux = *pqueue;
 
         *pqueue = aux->next;
         free(aux);
-
         return num;
     }
 }
@@ -87,8 +76,7 @@ int remover(Queue **pqueue) {
 void clean(Queue **pqueue) {
     Queue *aux, *aux2;
 
-    if(is_empty(*pqueue))
-        printf("\nFila vazia\n");
+    if(is_empty(*pqueue)) printf("\nFila vazia\n");
 
     else if(is_unitary(*pqueue)) {
         aux = *pqueue;
@@ -96,14 +84,12 @@ void clean(Queue **pqueue) {
         *pqueue = NULL;
         free(aux);
     }
-
     else {
         aux = *pqueue;
 
         while(aux) {
             aux2 = aux;
             aux = aux->next;
-
             free(aux2);
         }
         *pqueue = NULL;
