@@ -4,7 +4,7 @@
 As implementações a seguir foram feitas para fins didáticos durante a disciplina de Estrutura de Dados I, na Universidade Federal da Paraíba. Todas as implementações foram feitas usando a linguagem C.
 
 ## Instruções de uso e compilação
-Para uso adequado das implementações feitas, clone o repositório em sua máquina com o seguinte comando no terminal:
+Para uso adequado das implementações feitas, clone o repositório em sua máquina com o seguinte comando:
 ```bash
 git clone "https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git"
 ```
